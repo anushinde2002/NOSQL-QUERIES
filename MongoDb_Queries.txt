@@ -1,0 +1,961 @@
+#MongoDb Practicals-
+
+#Basic commands
+
+C:\Windows\system32>mongosh
+Current Mongosh Log ID: 66546bf99b3eb1dd0ec2f2f7
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.5
+Using MongoDB:          7.0.6
+Using Mongosh:          2.1.5
+mongosh 2.2.6 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-05-16T23:32:57.381+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs;
+admin    40.00 KiB
+config  108.00 KiB
+local    80.00 KiB
+mydb     40.00 KiB
+test> use anita;
+switched to db anita
+anita> db.createCollection("Student");
+{ ok: 1 }
+anita> db.Student.insert([{"sno":1,"sname":"Akanksha","course":"Msc Comp.Sci","city":"Pune"},{"sno":2,"sname":"Nishant","course":"Bsc Nursing","city":"Mumbai"},{"sno":3,"sname":"Durga","course":"Bsc Agree","city":"Ahmednagar"},{"sno":4,"sname":"Vedant","course":"Chemical Engineering","city":"Gujarat"},{"sno":5,"sname":"Geeta","course":"B pharmacy","city":"Nashik"}]);
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('66546d4a9b3eb1dd0ec2f2f8'),
+    '1': ObjectId('66546d4a9b3eb1dd0ec2f2f9'),
+    '2': ObjectId('66546d4a9b3eb1dd0ec2f2fa'),
+    '3': ObjectId('66546d4a9b3eb1dd0ec2f2fb'),
+    '4': ObjectId('66546d4a9b3eb1dd0ec2f2fc')
+  }
+}
+anita> db.Student.find().pretty();
+[
+  {
+    _id: ObjectId('66546d4a9b3eb1dd0ec2f2f8'),
+    sno: 1,
+    sname: 'Akanksha',
+    course: 'Msc Comp.Sci',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId('66546d4a9b3eb1dd0ec2f2f9'),
+    sno: 2,
+    sname: 'Nishant',
+    course: 'Bsc Nursing',
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('66546d4a9b3eb1dd0ec2f2fa'),
+    sno: 3,
+    sname: 'Durga',
+    course: 'Bsc Agree',
+    city: 'Ahmednagar'
+  },
+  {
+    _id: ObjectId('66546d4a9b3eb1dd0ec2f2fb'),
+    sno: 4,
+    sname: 'Vedant',
+    course: 'Chemical Engineering',
+    city: 'Gujarat'
+  },
+  {
+    _id: ObjectId('66546d4a9b3eb1dd0ec2f2fc'),
+    sno: 5,
+    sname: 'Geeta',
+    course: 'B pharmacy',
+    city: 'Nashik'
+  }
+]
+anita> db.Student.drop()
+true
+anita>
+
+
+Assignment-
+
+C:\Users\Admin>mongosh
+Current Mongosh Log ID: 665474f9fc693230e2cdbb32
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.5
+Using MongoDB:          7.0.6
+Using Mongosh:          2.1.5
+mongosh 2.2.6 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-05-16T23:32:57.381+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use Student;
+switched to db Student
+Student> db.createCollection("studentdetails");
+{ ok: 1 }
+
+Student> db.studentdetails.insertMany([
+...   {"sno": 1, "sname": "anita", "degree": "Msc Computer Sci", "sem": 2, "CGPA": 9.55},
+...   {"sno": 2, "sname": "akshada", "degree": "Master of Science", "sem": 4, "CGPA": 9.02},
+...   {"sno": 3, "sname": "anjali", "degree": "BCA", "sem": 3, "CGPA": 8.77},
+...   {"sno": 4, "sname": "priti", "degree": "BCOM", "sem": 4, "CGPA": 7.77},
+...   {"sno": 5, "sname": "devika", "degree": "BCA", "sem": 5, "CGPA": 6.66},
+...   {"sno": 6, "sname": "vishal", "degree": "BCA", "sem": 5, "CGPA": 8.88},
+...   {"sno": 7, "sname": "saurabh", "degree": "BCOM", "sem": 3, "CGPA": 5.55},
+...   {"sno": 8, "sname": "sujata", "degree": "BCA", "sem": 3, "CGPA": 9.0},
+...   {"sno": 9, "sname": "vedika", "degree": "BCOM", "sem": 4, "CGPA": 6.06},
+...   {"sno": 10, "sname": "sejal", "degree": "BSC", "sem": 3, "CGPA": 8.23}
+... ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('665477f6fc693230e2cdbb33'),
+    '1': ObjectId('665477f6fc693230e2cdbb34'),
+    '2': ObjectId('665477f6fc693230e2cdbb35'),
+    '3': ObjectId('665477f6fc693230e2cdbb36'),
+    '4': ObjectId('665477f6fc693230e2cdbb37'),
+    '5': ObjectId('665477f6fc693230e2cdbb38'),
+    '6': ObjectId('665477f6fc693230e2cdbb39'),
+    '7': ObjectId('665477f6fc693230e2cdbb3a'),
+    '8': ObjectId('665477f6fc693230e2cdbb3b'),
+    '9': ObjectId('665477f6fc693230e2cdbb3c')
+  }
+}
+
+#verify documents are inserted
+Student> db.studentdetails.find().pretty();
+[
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb33'),
+    sno: 1,
+    sname: 'anita',
+    degree: 'Msc Computer Sci',
+    sem: 2,
+    CGPA: 9.55
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb34'),
+    sno: 2,
+    sname: 'akshada',
+    degree: 'Master of Science',
+    sem: 4,
+    CGPA: 9.02
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb35'),
+    sno: 3,
+    sname: 'anjali',
+    degree: 'BCA',
+    sem: 3,
+    CGPA: 8.77
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb36'),
+    sno: 4,
+    sname: 'priti',
+    degree: 'BCOM',
+    sem: 4,
+    CGPA: 7.77
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb37'),
+    sno: 5,
+    sname: 'devika',
+    degree: 'BCA',
+    sem: 5,
+    CGPA: 6.66
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb38'),
+    sno: 6,
+    sname: 'vishal',
+    degree: 'BCA',
+    sem: 5,
+    CGPA: 8.88
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb39'),
+    sno: 7,
+    sname: 'saurabh',
+    degree: 'BCOM',
+    sem: 3,
+    CGPA: 5.55
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb3a'),
+    sno: 8,
+    sname: 'sujata',
+    degree: 'BCA',
+    sem: 3,
+    CGPA: 9
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb3b'),
+    sno: 9,
+    sname: 'vedika',
+    degree: 'BCOM',
+    sem: 4,
+    CGPA: 6.06
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb3c'),
+    sno: 10,
+    sname: 'sejal',
+    degree: 'BSC',
+    sem: 3,
+    CGPA: 8.23
+  }
+]
+
+#Display all students in BCA
+Student> db.studentdetails.find({"degree":"BCA"}).pretty();
+[
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb35'),
+    sno: 3,
+    sname: 'anjali',
+    degree: 'BCA',
+    sem: 3,
+    CGPA: 8.77
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb37'),
+    sno: 5,
+    sname: 'devika',
+    degree: 'BCA',
+    sem: 5,
+    CGPA: 6.66
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb38'),
+    sno: 6,
+    sname: 'vishal',
+    degree: 'BCA',
+    sem: 5,
+    CGPA: 8.88
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb3a'),
+    sno: 8,
+    sname: 'sujata',
+    degree: 'BCA',
+    sem: 3,
+    CGPA: 9
+  }
+]
+
+#Display all students in ascending order
+Student> db.studentdetails.find().sort({"sname":1}).pretty();
+[
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb34'),
+    sno: 2,
+    sname: 'akshada',
+    degree: 'Master of Science',
+    sem: 4,
+    CGPA: 9.02
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb33'),
+    sno: 1,
+    sname: 'anita',
+    degree: 'Msc Computer Sci',
+    sem: 2,
+    CGPA: 9.55
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb35'),
+    sno: 3,
+    sname: 'anjali',
+    degree: 'BCA',
+    sem: 3,
+    CGPA: 8.77
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb37'),
+    sno: 5,
+    sname: 'devika',
+    degree: 'BCA',
+    sem: 5,
+    CGPA: 6.66
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb36'),
+    sno: 4,
+    sname: 'priti',
+    degree: 'BCOM',
+    sem: 4,
+    CGPA: 7.77
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb39'),
+    sno: 7,
+    sname: 'saurabh',
+    degree: 'BCOM',
+    sem: 3,
+    CGPA: 5.55
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb3c'),
+    sno: 10,
+    sname: 'sejal',
+    degree: 'BSC',
+    sem: 3,
+    CGPA: 8.23
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb3a'),
+    sno: 8,
+    sname: 'sujata',
+    degree: 'BCA',
+    sem: 3,
+    CGPA: 9
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb3b'),
+    sno: 9,
+    sname: 'vedika',
+    degree: 'BCOM',
+    sem: 4,
+    CGPA: 6.06
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb38'),
+    sno: 6,
+    sname: 'vishal',
+    degree: 'BCA',
+    sem: 5,
+    CGPA: 8.88
+  }
+]
+
+#Display First 5 students
+Student> db.studentdetails.find().limit(5).pretty();
+[
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb33'),
+    sno: 1,
+    sname: 'anita',
+    degree: 'Msc Computer Sci',
+    sem: 2,
+    CGPA: 9.55
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb34'),
+    sno: 2,
+    sname: 'akshada',
+    degree: 'Master of Science',
+    sem: 4,
+    CGPA: 9.02
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb35'),
+    sno: 3,
+    sname: 'anjali',
+    degree: 'BCA',
+    sem: 3,
+    CGPA: 8.77
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb36'),
+    sno: 4,
+    sname: 'priti',
+    degree: 'BCOM',
+    sem: 4,
+    CGPA: 7.77
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb37'),
+    sno: 5,
+    sname: 'devika',
+    degree: 'BCA',
+    sem: 5,
+    CGPA: 6.66
+  }
+]
+
+#List degree of Student priti
+Student> db.studentdetails.findOne({"sname":"priti"},{"degree":1,_id:0});
+{ degree: 'BCOM' }
+
+#Display no of Student n BCA
+Student> db.studentdetails.count({"degree":"BCA"});
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+4
+
+#Display all degrees without id
+Student> db.studentdetails.find({},{"degree":1,_id:0}).pretty();
+[
+  { degree: 'Msc Computer Sci' },
+  { degree: 'Master of Science' },
+  { degree: 'BCA' },
+  { degree: 'BCOM' },
+  { degree: 'BCA' },
+  { degree: 'BCA' },
+  { degree: 'BCOM' },
+  { degree: 'BCA' },
+  { degree: 'BCOM' },
+  { degree: 'BSC' }
+]
+
+#Display all distinct degrees
+Student> db.studentdetails.distinct("degree");
+[ 'BCA', 'BCOM', 'BSC', 'Master of Science', 'Msc Computer Sci' ]
+Student> db.studentdetails.find({"degree":"BCA","sem":5}).pretty();
+[
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb37'),
+    sno: 5,
+    sname: 'devika',
+    degree: 'BCA',
+    sem: 5,
+    CGPA: 6.66
+  },
+  {
+    _id: ObjectId('665477f6fc693230e2cdbb38'),
+    sno: 6,
+    sname: 'vishal',
+    degree: 'BCA',
+    sem: 5,
+    CGPA: 8.88
+  }
+]
+
+ASSIGNMENTNO-1
+
+Q. 1.Create a database with name Movie
+   2.Create a film as a collection of documents with following fields.
+     a)film id
+     b)title of film
+     c)year of release
+     d)genere/category
+     e)actors(Fname,Lname)
+     f)director(Fname,Lname)
+     g)release details(places,date of rating)
+   3.Create 'Actor' as a collection of documents with-
+     a)actor id
+     b)F_name
+     c) L_name
+     d)Add(street,city,state,country,pincode)
+     e)contact details(email id and phone no)
+     d) age of an actor
+
+->//create database Movie
+use Movie
+
+1. //create collection Film
+db.createCollection("Film")
+
+//insert records in film collection
+db.film.insert({
+  "_id": ObjectId("film_id_here"),
+  "title": "Film Title",
+  "year_of_release": 2023,
+  "genre": ["Adventure", "Action"],
+  "actors": [
+    { "first_name": "Actor1_First", "last_name": "Actor1_Last" },
+    { "first_name": "Actor2_First", "last_name": "Actor2_Last" }
+  ],
+  "directors": [
+    { "first_name": "Director1_First", "last_name": "Director1_Last" },
+    { "first_name": "Director2_First", "last_name": "Director2_Last" }
+  ],
+  "release_details": {
+    "places": ["City1", "City2"],
+    "dates": ["2023-01-01", "2023-01-15"],
+    "rating": "PG-13"
+  }
+
+})
+
+2. //create an Actor Collection
+db.createCollection("Actor")
+
+//insert record into the Actor collection
+
+db.Actor.insert({
+  "_id": ObjectId("actor_id_here"),
+  "first_name": "Actor_First",
+  "last_name": "Actor_Last",
+  "address": {
+    "street": "123 Main Street",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "pin_code": "12345"
+  },
+  "contact_details": {
+    "email": "actor@example.com",
+    "phone_no": "123-456-7890"
+  },
+  "age": 30
+}
+)
+
+
+#Queries->
+
+1. insert at least 10 documents in the collection Film:
+
+use YourDatabaseName;
+
+// a)
+db.Film.insert({
+  title: "Film1",
+  genres: ["Action", "Drama"],
+  // other fields
+});
+
+// b)
+db.Film.insert({
+  title: "Film2",
+  release_places: ["Place1", "Place2"],
+  release_dates: ["Date1", "Date2"],
+  // other fields
+});
+
+// c)
+db.Film.insert([
+  { title: "Film3", release_year: 2022, /* other fields */ },
+  { title: "Film4", release_year: 2022, /* other fields */ },
+  { title: "Film5", release_year: 2022, /* other fields */ }
+]);
+
+// d)
+db.Film.insert([
+  { title: "Film6", director: "Director1", /* other fields */ },
+  { title: "Film7", director: "Director1", /* other fields */ }
+]);
+
+// e)
+db.Film.insert([
+  { title: "Film8", actors: ["Madhuri Dixit", "Shahrukh Khan"], /* other fields */ },
+  { title: "Film9", actors: ["Madhuri Dixit", "Shahrukh Khan"], /* other fields */ }
+]);
+
+2. insert at least 10 documents in the collection Actor:
+
+// Assuming you have a reference to the films in the 'Film' collection
+db.Actor.insert([
+  { name: "Actor1", films: ["Film1", "Film2"], /* other fields */ },
+  { name: "Actor2", films: ["Film3", "Film4"], /* other fields */ },
+  // Insert 8 more actors with films
+]);
+
+
+3. Display all the documents inserted in both the collections:
+
+
+// Display all documents in the Film collection
+db.Film.find().pretty();
+
+// Display all documents in the Actor collection
+db.Actor.find().pretty();
+
+
+4. Add a value to the rating of the film whose title starts with 'T':
+
+db.Film.update(
+  { title: /^T/ },
+  { $set: { rating: 5 } },
+  { multi: true }
+);
+
+
+5. Add an actor named " " in the ‘Actor’ collection. Also, add the details of the film in ‘Film’ collection in which this actor has acted:
+
+db.Actor.insert({
+  name: "Actor3",
+  films: ["Film10"],
+  // other fields
+});
+
+db.Film.insert({
+  title: "Film10",
+  actors: ["Actor3"],
+  // other fields
+});
+
+6. Delete the film " ":
+db.Film.deleteOne({ title: "Film11" });
+
+7. Delete an actor named " ":
+
+db.Actor.deleteOne({ name: "Actor4" });
+
+8. Delete all actors from an ‘Actor’ collection who have age greater than “ ”:
+
+db.Actor.deleteMany({ age: { $gt: 30 } });
+
+9. Update the actor’s address where Actor Id is “ ”:
+
+db.Actor.update(
+  { _id: ObjectId("actorId") },
+  { $set: { address: "New Address" } }
+);
+
+10. Update the genre of the film directed by “ ”:
+
+db.Film.update(
+  { director: "Director1" },
+  { $set: { genre: "New Genre" } },
+  { multi: true }
+);
+
+
+ASSIGNMENT NO-2
+
+
+// Connect to MongoDB
+use YourDatabaseName;
+
+1. // Create Employee collection
+db.createCollection("Employee");
+
+// Insert a sample document into the Employee collection
+db.Employee.insert({
+    "EmployeeID": 1,
+    "FirstName": "John",
+    "LastName": "Doe",
+    "Email": "john.doe@example.com",
+    "PhoneNo": "123-456-7890",
+    "Address": {
+        "HouseNo": "123",
+        "Street": "Main Street",
+        "City": "Anytown",
+        "State": "CA",
+        "Country": "USA",
+        "Pincode": "12345"
+    },
+    "Salary": 50000,
+    "Designation": "Software Engineer",
+    "Experience": 3,
+    "DateOfJoining": ISODate("2023-01-01T00:00:00Z"),
+    "Birthdate": ISODate("1990-01-01T00:00:00Z")
+});
+
+
+
+2. // Create Transaction collection
+db.createCollection("Transaction");
+
+// Insert a sample document into the Transaction collection
+db.Transaction.insert({
+    "TransactionId": 1,
+    "TransactionDate": ISODate("2023-01-01T12:00:00Z"),
+    "Name": "John",
+    "TransactionDetails": {
+        "ItemId": 101,
+        "ItemName": "Product A",
+        "Quantity": 2,
+        "Price": 50.00
+    },
+    "Payment": {
+        "Type": "Credit",
+        "TotalAmountPaid": 100.00,
+        "PaymentSuccessful": true
+    },
+    "Remark": "Completed successfully"
+});
+
+
+
+Queries->
+1.Insert at least 5 documents in ‘Employee’ collection
+
+db.Employee.insertMany([
+  { "EmployeeID": 1, "FirstName": "John", "LastName": "Doe", "Email": "john@example.com", "PhoneNo": "1234567890", "Address": { "HouseNo": "123", "Street": "Main St", "City": "Cityville", "State": "Stateville", "Country": "Countryland", "Pincode": "12345" }, "Salary": 50000, "Designation": "Developer", "Experience": 2, "DateOfJoining": ISODate("2022-01-01"), "Birthdate": ISODate("1990-01-01") },
+  // Add 4 more documents with similar structure
+]);
+
+2. Insert multiple documents (at least 10) into the ‘Transaction’ collection:
+
+db.Transaction.insertMany([
+  { "TransactionId": 101, "TransactionDate": ISODate("2022-01-15"), "Name": "John", "TransactionDetails": [{ "ItemId": 1, "ItemName": "Product1", "Quantity": 2, "Price": 20 }], "Payment": { "Type": "Credit", "TotalAmountPaid": 40, "PaymentSuccessful": true }, "Remark": "" },
+  // Add 9 more documents with similar structure
+]);
+
+
+3. Display all the documents of both the collections in a formatted manner:
+
+db.Employee.find().pretty();
+db.Transaction.find().pretty();
+
+
+4.Update salary of all employees by giving an increment of Rs. 4000:
+
+db.Employee.updateMany({}, { $inc: { "Salary": 4000 } });
+
+
+5. Update the remark for transaction id 201:
+
+db.Transaction.update({ "TransactionId": 201 }, { $set: { "Remark": "Updated Remark" } });
+
+
+6.Update designation of an employee named “_” from supervisor to manager:
+
+db.Employee.update({ "FirstName": "John" }, { $set: { "Designation": "Manager" } });
+
+
+7.Update designation of an employee having Employee Id as "_":
+
+db.Employee.update({ "EmployeeID": 1 }, { $set: { "Designation": "New Designation" } });
+
+
+8.Change the address of an employee having Employee Id as "_":
+
+db.Employee.update({ "EmployeeID": 1 }, { $set: { "Address": { "HouseNo": "456", "Street": "New St", "City": "New City" } } });
+
+
+9. Delete transaction made by “John” employee on the given date:
+
+db.Transaction.deleteOne({ "Name": "John", "TransactionDate": ISODate("2022-01-15") });
+
+
+10. Delete all the employees whose first name starts with ‘K’:
+
+db.Employee.deleteMany({ "FirstName": /^K/ });
+
+
+
+ASSIGNMENT NO-3
+
+1. //create Database
+use Movie
+
+//create Collection
+db.createCollection("Film")
+
+//insert records in film collection
+db.film.insert({
+  "_id": ObjectId("film_id_here"),
+  "title": "Film Title",
+  "year_of_release": 2023,
+  "genre": ["Adventure", "Action"],
+  "actors": [
+    { "first_name": "Actor1_First", "last_name": "Actor1_Last" },
+    { "first_name": "Actor2_First", "last_name": "Actor2_Last" }
+  ],
+  "directors": [
+    { "first_name": "Director1_First", "last_name": "Director1_Last" },
+    { "first_name": "Director2_First", "last_name": "Director2_Last" }
+  ],
+  "release_details": {
+    "places": ["City1", "City2"],
+    "dates": ["2023-01-01", "2023-01-15"],
+    "rating": "PG-13"
+  }
+
+})
+
+2. //create an Actor Collection
+db.createCollection("Actor")
+
+//insert record into the Actor collection
+
+db.Actor.insert({
+  "_id": ObjectId("actor_id_here"),
+  "first_name": "Actor_First",
+  "last_name": "Actor_Last",
+  "address": {
+    "street": "123 Main Street",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "pin_code": "12345"
+  },
+  "contact_details": {
+    "email": "actor@example.com",
+    "phone_no": "123-456-7890"
+  },
+  "age": 30
+}
+)
+
+Queries->
+1. Find the titles of all films starting with the letter ‘R’ released during the years 2009 and 2011.
+
+db.films.find({
+  title: /^R/i,
+  release_year: { $in: [2009, 2011] }
+}, { title: 1, _id: 0 })
+
+
+2. Find the list of films acted by an actor " ".
+
+db.films.find({
+  actors: "ActorName"
+}, { title: 1, _id: 0 })
+
+3.Find all the films released in 90s.
+
+db.films.find({
+  release_year: { $gte: 1990, $lt: 2000 }
+}, { title: 1, _id: 0 })
+
+4. Find all films belonging to “Adventure” and “Thriller” genre.
+
+db.films.find({
+  genre: { $in: ["Adventure", "Thriller"] }
+}, { title: 1, _id: 0 })
+
+5. Find all the films having ‘A’ rating.
+
+db.films.find({
+  rating: "A"
+}, { title: 1, _id: 0 })
+
+
+6. Arrange the film names in ascending order, and release year should be in descending order.
+
+db.films.find({}, { title: 1, release_year: 1, _id: 0 }).sort({ title: 1, release_year: -1 })
+
+7. Sort the actors in ascending order according to their age.
+
+db.actors.find({}, { name: 1, age: 1, _id: 0 }).sort({ age: 1 })
+
+
+8. Find movies that are comedies or dramas and are released after 2013.
+
+db.films.find({
+  genre: { $in: ["Comedy", "Drama"] },
+  release_year: { $gt: 2013 }
+}, { title: 1, _id: 0 })
+
+
+9. Show the latest 2 films acted by an actor “ActorName”.
+
+db.actors.aggregate([
+  { $match: { name: "ActorName" } },
+  { $unwind: "$films" },
+  { $lookup: { from: "films", localField: "films", foreignField: "_id", as: "filmDetails" } },
+  { $unwind: "$filmDetails" },
+  { $sort: { "filmDetails.release_year": -1 } },
+  { $limit: 2 },
+  { $project: { _id: 0, title: "$filmDetails.title", release_year: "$filmDetails.release_year" } }
+])
+
+
+10. List the titles of films acted by actors “Actor1” and “Actor2”.
+
+db.actors.aggregate([
+  { $match: { name: { $in: ["Actor1", "Actor2"] } } },
+  { $unwind: "$films" },
+  { $lookup: { from: "films", localField: "films", foreignField: "_id", as: "filmDetails" } },
+  { $unwind: "$filmDetails" },
+  { $project: { _id: 0, title: "$filmDetails.title" } }
+])
+
+
+11. Retrieve films with an actor living in Spain.
+
+db.actors.aggregate([
+  { $match: { residence: "Spain" } },
+  { $unwind: "$films" },
+  { $lookup: { from: "films", localField: "films", foreignField: "_id", as: "filmDetails" } },
+  { $unwind: "$filmDetails" },
+  { $project: { _id: 0, title: "$filmDetails.title", release_year: "$filmDetails.release_year" } }
+])
+
+
+12. Retrieve films with actor details.
+
+db.films.aggregate([
+  { $lookup: { from: "actors", localField: "actors", foreignField: "_id", as: "actorDetails" } },
+  { $project: { _id: 0, title: 1, release_year: 1, actors: "$actorDetails" } }
+])
+
+
+
+ASSIGNMENT NO-4
+
+//create database Student
+->use Student
+
+
+**// Create the studentdetails collection//**
+db.createCollection("studentdetails")
+
+// Insert at least 10 documents
+db.studentdetails.insertMany([
+  { SRN: "001", Sname: "John Doe", Degree: "Computer Science", Sem: 5, CGPA: 3.8 },
+  { SRN: "002", Sname: "Jane Smith", Degree: "Electrical Engineering", Sem: 4, CGPA: 3.5 },
+  { SRN: "003", Sname: "Alice Johnson", Degree: "Mechanical Engineering", Sem: 6, CGPA: 3.2 },
+  { SRN: "004", Sname: "Bob Williams", Degree: "Civil Engineering", Sem: 3, CGPA: 3.9 },
+  { SRN: "005", Sname: "Eva Davis", Degree: "Chemical Engineering", Sem: 5, CGPA: 3.6 },
+  { SRN: "006", Sname: "Chris Brown", Degree: "Computer Science", Sem: 4, CGPA: 3.7 },
+  { SRN: "007", Sname: "Sophia Taylor", Degree: "Electrical Engineering", Sem: 6, CGPA: 3.4 },
+  { SRN: "008", Sname: "Daniel Wilson", Degree: "Mechanical Engineering", Sem: 3, CGPA: 3.1 },
+  { SRN: "009", Sname: "Grace Anderson", Degree: "Civil Engineering", Sem: 5, CGPA: 3.8 },
+  { SRN: "010", Sname: "Michael Miller", Degree: "Chemical Engineering", Sem: 4, CGPA: 3.5 }
+])
+
+// Verify the documents are inserted
+db.studentdetails.find().pretty()
+
+Queries->
+1. Display all the documents:
+db.studentdetails.find().pretty()
+
+2. Display all the students in BCA
+
+db.studentdetails.find({ Degree: "BCA" }).pretty()
+
+
+3. .Display all the students in ascending order
+
+db.studentdetails.find().sort({ Sname: 1 }).pretty()
+
+4. Display first 5 students
+
+db.studentdetails.find().limit(5).pretty()
+
+5. List the degree of student "Rahul" (assuming you have a student with the name Rahul):
+
+db.studentdetails.findOne({ Sname: "Rahul" }, { Degree: 1, _id: 0 })
+
+
+6. Display the number of students in BCA:
+
+db.studentdetails.count({ Degree: "BCA" })
+
+7. Display all the degrees without _id:
+
+db.studentdetails.find({}, { _id: 0, Degree: 1 }).pretty()
+
+8. Display all the distinct degrees:
+
+db.studentdetails.distinct("Degree")
+
+9. Display all the BCA students with CGPA greater than 6 but less than 7.5:
+
+db.studentdetails.find({
+  Degree: "BCA",
+  CGPA: { $gt: 6, $lt: 7.5 }
+}).pretty()
+
+10. Display all the students in BCA and in 6th Sem:
+
+db.studentdetails.find({
+  Degree: "BCA",
+  Sem: 6
+}).pretty()
+
+
+
+
+
+
+
+
+
+
+
+
